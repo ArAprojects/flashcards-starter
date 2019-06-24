@@ -19,6 +19,15 @@ class Turn {
       return false
     }
   }
+
+  giveFeedback() {
+    if (this.evaluateGuess() === true) {
+      return 'Correct!'
+    }
+    else {
+      return 'Incorrect!'
+    }
+  }
 }
 
 
