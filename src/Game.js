@@ -9,8 +9,7 @@ const Deck = require('../src/Deck')
 
 class Game {
   constructor() {
-
-
+    this.roundcount = 0
   }
 
 
