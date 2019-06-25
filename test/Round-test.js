@@ -51,7 +51,7 @@ describe('Round', function() {
     expect(round.turns).to.equal(1)
   });
 
-  it('should count number of cards', function() {
+  it('should evaluate guess on turn', function() {
     const card1 = new Card(1, 'What is Robbie\'s favorite animal', ['sea otter', 'pug', 'capybara'], 'sea otter');
     const card2 = new Card(14, 'What organ is Khalid missing?', ['spleen', 'appendix', 'gallbladder'], 'gallbladder');
     const card3 = new Card(12, 'What is Travis\'s middle name?', ['Lex', 'William', 'Fitzgerald'], 'Fitzgerald');
@@ -61,7 +61,7 @@ describe('Round', function() {
     expect(round.takeTurn('sea otter')).to.equal('Correct!')
   });
 
-  it('should count number of cards', function() {
+  it('should', function() {
     const card1 = new Card(1, 'What is Robbie\'s favorite animal', ['sea otter', 'pug', 'capybara'], 'sea otter');
     const card2 = new Card(14, 'What organ is Khalid missing?', ['spleen', 'appendix', 'gallbladder'], 'gallbladder');
     const card3 = new Card(12, 'What is Travis\'s middle name?', ['Lex', 'William', 'Fitzgerald'], 'Fitzgerald');
@@ -70,7 +70,21 @@ describe('Round', function() {
     const round = new Round(deck);
     round.takeTurn('sea otter')
     round.takeTurn('pug')
-    expect(round.incorrectGuesses).to.eql([14])
+    expect(round.incorrectGuesses).to.eql([14]);
+    expect(round.currentCard).to.equal(card2)
+  });
+
+  it('should', function() {
+    const card1 = new Card(1, 'What is Robbie\'s favorite animal', ['sea otter', 'pug', 'capybara'], 'sea otter');
+    const card2 = new Card(14, 'What organ is Khalid missing?', ['spleen', 'appendix', 'gallbladder'], 'gallbladder');
+    const card3 = new Card(12, 'What is Travis\'s middle name?', ['Lex', 'William', 'Fitzgerald'], 'Fitzgerald');
+    const turn = new Turn('pug', card3)
+    const deck = new Deck([card1, card2, card3]);
+    const round = new Round(deck);
+    round.takeTurn('sea otter')
+    round.takeTurn('pug')
+    round.takeTurn('lex')
+    expect(round.calculatePercentCorrect()).to.eql(33);
   });
 
 

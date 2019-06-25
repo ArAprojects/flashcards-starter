@@ -19,11 +19,17 @@ class Round {
       this.incorrectGuesses.push(this.currentCard.id)
       return turn.giveFeedback()
     } else {
-    return turn.giveFeedback()
-
+      return turn.giveFeedback()
       }
   }
 
+    calculatePercentCorrect() {
+    return Math.floor(((this.turns - this.incorrectGuesses.length) / this.turns) * 100)
+  }
+
+  endround() {
+    console.log(`** Round over! ** You answered ${calculatePercentCorrect()} of the questions correctly!`)
+  }
 
 }
 
