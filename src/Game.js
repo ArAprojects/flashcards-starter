@@ -3,9 +3,10 @@ const prototypeQuestions = data.prototypeData;
 const util = require('./util');
 const Round = require('../src/Round');
 const Card = require('../src/Card');
+const Deck = require('../src/Deck')
 
-const cardsy = prototypeQuestions.map(ob => ob = new Card(ob.id, ob.question, ob.))
-console.log(cardsy)
+
+
 class Game {
   constructor() {
 
@@ -16,9 +17,11 @@ class Game {
 
 
   start() {
-
-    this.printMessage()
-    this.printQuestion()
+    const cards = prototypeQuestions.map(ob => ob = new Card(ob.id, ob.question, ob.answers, ob.correctAnswer))
+    const deck1 = new Deck(cards)
+    const round1 = new Round(deck1)
+    this.printMessage(deck1, round1)
+    this.printQuestion(round1)
   }
 
   printMessage(deck, round) {

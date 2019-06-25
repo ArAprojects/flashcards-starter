@@ -18,7 +18,7 @@ describe('Game', function() {
 
   it('should be an instance of Round', function() {
     const game = new Game();
-    
+    game.start()
     expect(game).to.be.an.instanceof(Game);
   });
 
