@@ -1,5 +1,6 @@
 const data = require('./data');
-const prototypeQuestions = data.prototypeData;
+const data2 = require('./data2')
+const dataset = [data.prototypeData, data2.javascriptTrivia]
 const util = require('./util');
 const Round = require('../src/Round');
 const Card = require('../src/Card');
@@ -9,22 +10,20 @@ const Deck = require('../src/Deck')
 
 class Game {
   constructor() {
-    this.roundcount = 0
+    this.roundCount = 0;
+    this.currentRound;
   }
 
-
-
-
   start() {
-    const cards = prototypeQuestions.map(ob => ob = new Card(ob.id, ob.question, ob.answers, ob.correctAnswer))
+    const cards = dataset[this.roundCount].map(ob => ob = new Card(ob.id, ob.question, ob.answers, ob.correctAnswer))
     const deck1 = new Deck(cards)
-    const round1 = new Round(deck1)
-    this.printMessage(deck1, round1)
-    this.printQuestion(round1)
+    this.currentRound = new Round(deck1, this)
+    this.printMessage(deck1, this.currentRound)
+    this.printQuestion(this.currentRound)
   }
 
   printMessage(deck, round) {
-      console.log(`Welcome to FlashCards! You are playing with ${deck.countCards()} cards.
+    console.log(`Welcome to FlashCards Round ${this.roundCount}! You are playing with ${deck.countCards()} cards.
 -----------------------------------------------------------------------`)
   }
 
