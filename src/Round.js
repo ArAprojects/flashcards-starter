@@ -33,8 +33,16 @@ class Round {
 
   endround() {
     console.log(`** Round over! ** You answered ${this.calculatePercentCorrect()}% of the questions correctly!`)
-    this.game.roundCount += 1
-    this.game.start()
+    if (this.calculatePercentCorrect() < 90) {
+      console.log( '\n' + ' ** You did not answer over 90% correct please try again before moving forward!! ** ' + '\n')
+      this.game.start()
+    }
+
+    else {
+      this.game.roundCount += 1
+      this.game.start()
+
+    }
 
   }
 
