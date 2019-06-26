@@ -21,10 +21,6 @@ const getRound = (round) => {
   return Promise.resolve(round);
 }
 
-const getGame = (game) => {
-  return Promise.resolve(game);
-}
-
 
 const confirmUpdate = (id, round) => {
   const feedback = round.takeTurn(id);
@@ -34,7 +30,7 @@ const confirmUpdate = (id, round) => {
   }
 }
 
-async function main(round, game) {
+async function main(round) {
 
   const currentRound = await getRound(round);
   const getAnswer = await inquirer.prompt(genList(currentRound));
@@ -42,7 +38,6 @@ async function main(round, game) {
 
     if(!round.returnCurrentCard()) {
       round.endround();
-    
 
     } else {
       main(round);
