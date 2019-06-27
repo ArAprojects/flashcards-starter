@@ -7,13 +7,12 @@ const Card = require('../src/Card');
 const Deck = require('../src/Deck')
 
 
-
-
 class Game {
   constructor() {
     this.roundCount = 0;
     this.currentRound;
     this.startTime
+    this.dataCount = dataset.length
   }
 
   start() {
