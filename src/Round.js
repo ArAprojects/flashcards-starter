@@ -9,6 +9,7 @@ class Round {
     this.currentCard = this.currentCard;
     this.turns = 0;
     this.incorrectGuesses = []
+    this.roundTime;
   }
 
   returnCurrentCard() {
@@ -32,20 +33,26 @@ class Round {
   }
 
   endround() {
-    console.log(`** Round over! ** You answered ${this.calculatePercentCorrect()}% of the questions correctly!`)
-    if (this.calculatePercentCorrect() < 90) {
-      console.log( '\n' + ' ** You did not answer over 90% correct please try again before moving forward!! ** ' + '\n')
+
+    var endTime = new Date()
+    this.roundTime = Math.floor((endTime - this.game.startTime) / 1000)
+    console.log(`** Round ${this.game.roundCount + 1} over! ** You answered ${this.calculatePercentCorrect()}% of the questions correctly! and it only took you ${this.roundTime} seconds!`)
+
+    if (this.game.dataCount = this.game.roundCount ) {
+      console.log('\n' + " **** GAME OVERRRRRR!!!!!!!! *** " + '\n' )
+
+    }
+
+    else if (this.calculatePercentCorrect() < 40) {
+      console.log( '\n' + ' ** You need atleast 90% correct to move on to the next round, please try again! ** ' + '\n')
       this.game.start()
     }
 
     else {
       this.game.roundCount += 1
       this.game.start()
-
     }
-
   }
-
 }
 
 module.exports = Round;

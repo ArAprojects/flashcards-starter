@@ -7,14 +7,16 @@ const Card = require('../src/Card');
 const Deck = require('../src/Deck')
 
 
-
 class Game {
   constructor() {
     this.roundCount = 0;
     this.currentRound;
+    this.startTime
+    this.dataCount = dataset.length
   }
 
   start() {
+    this.startTime = new Date()
     const cards = dataset[this.roundCount].map(ob => ob = new Card(ob.id, ob.question, ob.answers, ob.correctAnswer))
     const deck1 = new Deck(cards)
     this.currentRound = new Round(deck1, this)
