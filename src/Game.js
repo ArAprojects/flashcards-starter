@@ -1,6 +1,6 @@
 const data = require('./data');
 const data2 = require('./data2')
-const dataset = [data.prototypeData, data2.javascriptTrivia]
+var dataset1 = [data.prototypeData, data2.javascriptTrivia]
 const util = require('./util');
 const Round = require('../src/Round');
 const Card = require('../src/Card');
@@ -12,12 +12,13 @@ class Game {
     this.roundCount = 0;
     this.currentRound;
     this.startTime
-    this.dataCount = dataset.length
+    this.dataset = dataset1
   }
 
   start() {
+    this.incorrectGuesses = []
     this.startTime = new Date()
-    const cards = dataset[this.roundCount].map(ob => ob = new Card(ob.id, ob.question, ob.answers, ob.correctAnswer))
+    const cards = this.dataset[this.roundCount].map(ob => ob = new Card(ob.id, ob.question, ob.answers, ob.correctAnswer))
     const deck1 = new Deck(cards)
     this.currentRound = new Round(deck1, this)
     this.printMessage(deck1, this.currentRound)

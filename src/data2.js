@@ -142,7 +142,7 @@ const javascriptTrivia = [{
   "id": 29,
   "question": "When called on to whiteboard a problem, what should be in your non-dominant hand?",
   "answers": ["a second marker", "a turkey club", "an eraser"],
-  "correctAnswer": "eraser"
+  "correctAnswer": " an eraser"
 }, {
   "id": 30,
   "question": "What term is used for the tendency to focus on one particular piece of information when making decisions or problem-solving?",
