@@ -56,7 +56,7 @@ class Round {
     `)}
 
     else if (this.calculatePercentCorrect() < 40) {
-      console.log( '\n' + ' ** You need atleast 90% correct to move on to the next round, please try again! ** ' + '\n')
+      console.log( '\n' + ' ** You need atleast 40% correct to move on to the next round, please try again! ** ' + '\n')
       this.game.start()
     }
 
