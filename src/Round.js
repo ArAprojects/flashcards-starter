@@ -1,5 +1,8 @@
 const Turn = require('../src/Turn');
 const Game = require('../src/Game')
+const chalkAnimation = require('chalk-animation');
+
+var dataset1
 
 
 class Round {
@@ -21,7 +24,7 @@ class Round {
     const turn = new Turn(guess, this.returnCurrentCard())
     this.turns += 1
     if (turn.evaluateGuess() === false) {
-      this.incorrectGuesses.push(this.currentCard.id)
+      this.incorrectGuesses.push(this.currentCard)
       return turn.giveFeedback()
     } else {
       return turn.giveFeedback()
@@ -33,15 +36,24 @@ class Round {
   }
 
   endround() {
-
     var endTime = new Date()
     this.roundTime = Math.floor((endTime - this.game.startTime) / 1000)
     console.log(`** Round ${this.game.roundCount + 1} over! ** You answered ${this.calculatePercentCorrect()}% of the questions correctly! and it only took you ${this.roundTime} seconds!`)
+    this.game.dataset.push(this.incorrectGuesses.map(el => el = {id: el.id, question: el.question, answers: el.answers, correctAnswer: el.correctAnswer } ))
 
-    if (this.game.dataCount = this.game.roundCount ) {
-      console.log('\n' + " **** GAME OVERRRRRR!!!!!!!! *** " + '\n' )
 
-    }
+    if (this.game.roundCount === 3) {
+
+    chalkAnimation.rainbow(`
+        #####     #    #     # #######    ####### #     # ####### ######
+      #     #   # #   ##   ## #          #     # #     # #       #     #
+      #        #   #  # # # # #          #     # #     # #       #     #
+      #  #### #     # #  #  # #####      #     # #     # #####   ######
+      #     # ####### #     # #          #     #  #   #  #       #   #
+      #     # #     # #     # #          #     #   # #   #       #    #
+       #####  #     # #     # #######    #######    #    ####### #     #
+
+    `)}
 
     else if (this.calculatePercentCorrect() < 40) {
       console.log( '\n' + ' ** You need atleast 90% correct to move on to the next round, please try again! ** ' + '\n')
